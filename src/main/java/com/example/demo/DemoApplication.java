@@ -22,20 +22,20 @@ public class DemoApplication {
 	@ZeebeWorker(type = "classify")
 	public void classifyEmergency(final JobClient client, final ActivatedJob job) {
 		logJob(job);
-		client.newCompleteCommand(job.getKey()).variables("{\"foo\": 1}").send().join();
+		client.newCompleteCommand(job.getKey()).variables("{\"emergencyType\": \"Injured\"}").send().join();
 	}
 
 
 	@ZeebeWorker(type = "hospital")
 	public void handleHospitalCoordination(final JobClient client, final ActivatedJob job) {
 		logJob(job);
-		client.newCompleteCommand(job.getKey()).variables("{\"foo\": 1}").send().join();
+		client.newCompleteCommand(job.getKey()).send().join();
 	}
 
 	@ZeebeWorker(type = "firefighter")
 	public void handleFirefighterCoordination(final JobClient client, final ActivatedJob job) {
 		logJob(job);
-		client.newCompleteCommand(job.getKey()).variables("{\"foo\": 1}").send().join();
+		client.newCompleteCommand(job.getKey()).send().join();
 	}
 
 
