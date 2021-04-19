@@ -19,7 +19,7 @@ public class DemoApplication {
         SpringApplication.run(DemoApplication.class, args);
     }
 
-    @ZeebeWorker(type = "classify")
+    @ZeebeWorker(type = "classify", name = "main-worker")
     public void classifyEmergency(final JobClient client, final ActivatedJob job) {
         logJob(job);
         if (job.getVariablesAsMap().get("emergencyReason") == null) { // default to ambulance if no reason is provided
@@ -32,13 +32,13 @@ public class DemoApplication {
     }
 
 
-    @ZeebeWorker(type = "hospital")
+    @ZeebeWorker(type = "hospital", name = "main-worker")
     public void handleHospitalCoordination(final JobClient client, final ActivatedJob job) {
         logJob(job);
         client.newCompleteCommand(job.getKey()).send().join();
     }
 
-    @ZeebeWorker(type = "firefighters")
+    @ZeebeWorker(type = "firefighters", name = "main-worker")
     public void handleFirefighterCoordination(final JobClient client, final ActivatedJob job) {
         logJob(job);
         client.newCompleteCommand(job.getKey()).send().join();
@@ -51,7 +51,7 @@ public class DemoApplication {
                 job.getType(),
                 job.getKey(),
                 job.getElementId(),
-                job.getWorkflowInstanceKey(),
+                job.getProcessInstanceKey(),
                 Instant.ofEpochMilli(job.getDeadline()),
                 job.getCustomHeaders(),
                 job.getVariables());
