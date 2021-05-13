@@ -1,12 +1,14 @@
 package com.example.demo;
 
+import io.camunda.zeebe.client.api.response.ActivatedJob;
+import io.camunda.zeebe.client.api.worker.JobClient;
+import io.camunda.zeebe.spring.client.EnableZeebeClient;
+import io.camunda.zeebe.spring.client.annotation.ZeebeWorker;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import io.zeebe.spring.client.EnableZeebeClient;
-import io.zeebe.spring.client.annotation.ZeebeWorker;
+
 import lombok.extern.slf4j.Slf4j;
-import io.zeebe.client.api.worker.JobClient;
-import io.zeebe.client.api.response.ActivatedJob;
+
 
 import java.time.Instant;
 

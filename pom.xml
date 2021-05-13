@@ -33,7 +33,7 @@
 			<artifactId>lombok</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>io.zeebe.spring</groupId>
+			<groupId>io.camunda</groupId>
 			<artifactId>spring-zeebe-starter</artifactId>
 			<version>${zeebe.version}</version>
 		</dependency>
